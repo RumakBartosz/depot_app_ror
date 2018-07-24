@@ -1,2 +1,2 @@
-#Depot app
+# Depot app
 RoR tutorial
