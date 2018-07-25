@@ -34,7 +34,17 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal ["must be greater than or equal to 0.01"],
     product.errors[:price]
     product.price = 1
+    assert product.valid?, "price is #{product.price}, which is invalid value"
+  end
+
+  test "length must shorter than this" do
+    product = Product.new(description: "yyy",
+			  price: 1,
+			  image_url: "ruby.jpg")
+    product.title = "more than ten"
     assert product.valid?
+    product.title = "exactly 9"
+    assert product.invalid?
   end
 
   def new_product(image_url)
